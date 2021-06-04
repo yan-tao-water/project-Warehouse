@@ -1,0 +1,51 @@
+#ifndef _USER_H
+#define _USER_H
+#include "user.h"
+#define FILEUSER "user.txt"
+
+typedef struct user
+{
+	char name[32];
+	char passwd[32];
+	float balance;
+	int count; 
+}User;
+
+typedef struct link
+{
+	User user;
+	struct link *next;
+}LinkUser;
+
+//创建头节点
+LinkUser *userCreatHead();
+//创建用户节点
+LinkUser *userCreatNode(User user);
+//尾插入节点
+void userInsertTail(LinkUser *headUser,User user);
+//释放用户链表
+void freeUserLink(LinkUser *headUser);
+//从文件读取用户链表
+void userLoadFromFile(const char *path,LinkUser *headUser);
+//将链表保存到文件
+void userSaveToFile(const char *path,LinkUser *headUser);
+//根据名字查找用户
+LinkUser *findUserName(LinkUser *headUser,char *namekey);
+//显示用户信息
+void display(LinkUser *p);
+//修改密码
+void changepasswd(LinkUser *p);
+//充值
+void recharge(LinkUser *p);
+//删除节点
+void deleteNode(LinkUser *p);
+//添加用户（注册）
+void addUser(LinkUser *headUser);
+//根据用户余额排序
+void sortBalance(LinkUser *headUser);
+//密码操作
+void myInputPasswd(char *passwd);
+
+
+
+#endif

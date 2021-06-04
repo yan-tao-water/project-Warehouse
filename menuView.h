@@ -1,0 +1,17 @@
+#ifndef _MENUVIEW_H
+#define _MENUVIEW_H
+#define CLEAR()               \
+    while (getchar() != '\n') \
+        ;
+#define CON_ENTER()               \
+    do                            \
+    {                             \
+        printf("\n\n回车继续\n"); \
+        while (getchar() != '\n') \
+            ;                     \
+    } while (0)
+void viewMain();//主界面显示菜单
+void viewUser();//用户登陆成功后菜单显示
+void viewNotary();//公证员登陆成功后菜单显示
+void viewAdmin();//管理员登陆成功后菜单显示
+#endif

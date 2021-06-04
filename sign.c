@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "sign.h"
+#define CLEAR()               \
+    while (getchar() != '\n') \
+        ;
+int confirmPassword(char *passkey)
+{
+	char passwd[20]; 
+    printf("请输入登录密码：");
+	scanf("%s",passwd);
+        if (strcmp(passkey, passwd) == 0)
+        {
+            printf("登录成功！\n");
+            return 1;
+        }
+        else
+        {
+            printf("密码不正确!\n");
+	     return 0;
+        }
+    
+}
+LinkUser *signUser(LinkUser *headUser, char *namekey)
+{
+    LinkUser *p = NULL;
+    p = findUserName(headUser, namekey);//查找该名称对应的用户链表对应的节点
+    if (p != NULL)
+    {
+        if (confirmPassword(p->next->user.passwd) == 1)
+        {
+            return p;
+        }
+        else
+        {
+            return NULL;
+        }
+    }
+    else if (findUserName(headUser, namekey) == NULL)
+    {
+        printf("用户名不存在----\n");
+        return NULL;
+    }
+    return NULL;
+}
+
